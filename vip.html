@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قسم الـ VIP المدفوع</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; padding: 20px; text-align: center; }
+        .header { margin-bottom: 30px; }
+        .back-btn { display: inline-block; background-color: #334155; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem; }
+        h1 { color: #eab308; margin-bottom: 10px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .card { background-color: #1e293b; border-radius: 12px; border: 1px solid #eab308; width: 300px; padding: 15px; text-align: right; box-shadow: 0 4px 10px rgba(234, 179, 8, 0.1); }
+        .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+        .card h3 { margin: 15px 0 5px 0; color: #f1f5f9; }
+        .price-tag { display: inline-block; background-color: #0284c7; color: #fff; font-size: 13px; font-weight: bold; padding: 4px 8px; border-radius: 6px; margin: 8px 0; }
+        .steam-tag { background-color: #171a21; border: 1px solid #66c0f4; color: #66c0f4; }
+        .razer-tag { background-color: #000; border: 1px solid #22c55e; color: #22c55e; }
+        .btn { display: block; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 15px; background-color: #eab308; color: #000; }
+        .btn:hover { background-color: #ca8a04; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-btn">⬅ العودة للقائمة الرئيسية</a>
+        <h1>قسم الإضافات والحزم الملكية (VIP) 👑</h1>
+        <p style="color: #94a3b8;">طرق الدفع المقبولة: بطاقات Razer Gold و Steam</p>
+    </div>
+
+    <div class="container">
+
+        <!-- حزمة 2 دولار رايزر جولد -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x180?text=Razer+Skin+Pack" alt="VIP Skin">
+            <h3>حزمة الأسلحة الخفيفة</h3>
+            <p style="color: #94a3b8; font-size: 14px;">تحتوي على 3 سكينات نادرة مع تأثيرات صوتية.</p>
+            <div>
+                <span class="price-tag razer-tag">💳 الدفع: 2$ Razer Gold</span>
+            </div>
+            <!-- استبدل YourBotUsername_bot باسم البوت -->
+            <a href="https://t.me/YourBotUsername_bot?start=pack_2dollar" class="btn" target="_blank">طلب وتفعيل عبر البوت</a>
+        </div>
+
+        <!-- حزمة 5 دولار بطاقة ستيم -->
+        <div class="card">
+            <img src="https://via.placeholder.com/300x180?text=Steam+Ultimate+Pack" alt="VIP Skin">
+            <h3>الحزمة الخارقة الشاملة</h3>
+            <p style="color: #94a3b8; font-size: 14px;">تضم كافة الأسلحة الذهبية، السكينات النادرة والخرائط.</p>
+            <div>
+                <span class="price-tag steam-tag">🎮 الدفع: بطاقة ستيم 5$ Steam</span>
+            </div>
+            <!-- استبدل YourBotUsername_bot باسم البوت -->
+            <a href="https://t.me/YourBotUsername_bot?start=pack_5dollar" class="btn" target="_blank">طلب وتفعيل عبر البوت</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

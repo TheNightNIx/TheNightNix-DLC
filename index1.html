@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheNightNix - متجر DLC للألعاب</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* شريط التنقل */
+        nav {
+            background: rgba(15, 12, 41, 0.95);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(255, 107, 107, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #ff6b6b;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* الرأس الرئيسي */
+        .header {
+            text-align: center;
+            padding: 60px 30px 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f, #4a90e2);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        /* حاوية البطاقات */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 60px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* البطاقة */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.2) 0%, transparent 70%);
+            animation: pulse-light 4s ease-in-out infinite;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(107, 199, 127, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:nth-child(1)::after {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), transparent);
+        }
+
+        .card:nth-child(2)::after {
+            background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), transparent);
+        }
+
+        .card:nth-child(3)::after {
+            background: linear-gradient(135deg, rgba(107, 199, 127, 0.2), transparent);
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(255, 107, 107, 0.5);
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.3), 
+                        0 0 40px rgba(255, 107, 107, 0.2);
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        /* الأيقونة */
+        .icon {
+            font-size: 70px;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5));
+        }
+
+        .card:nth-child(1) .icon {
+            animation: float 3s ease-in-out infinite, colorShift1 8s ease infinite;
+        }
+
+        .card:nth-child(2) .icon {
+            animation: float 3.2s ease-in-out infinite, colorShift2 8s ease infinite 1s;
+        }
+
+        .card:nth-child(3) .icon {
+            animation: float 3.4s ease-in-out infinite, colorShift3 8s ease infinite 2s;
+        }
+
+        /* العنوان والنص */
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card p {
+            font-size: 15px;
+            color: #bbb;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* الأزرار - تم التعديل لتناسب الروابط <a> */
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2; /* رفعه لضمان إمكانية الضغط عليه فوق المؤثرات */
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-red {
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-red:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-yellow {
+            background: linear-gradient(135deg, #ffd93d, #ffb700);
+            color: #000;
+            box-shadow: 0 5px 20px rgba(255, 217, 61, 0.4);
+        }
+
+        .btn-yellow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 217, 61, 0.6);
+        }
+
+        .btn-green {
+            background: linear-gradient(135deg, #6bcf7f, #4caf50);
+            color: white;
+            box-shadow: 0 5px 20px rgba(107, 199, 127, 0.4);
+        }
+
+        .btn-green:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(107, 199, 127, 0.6);
+        }
+
+        /* الحركات والتأثيرات */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes colorShift1 {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.8)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 217, 61, 0.8)); }
+        }
+
+        @keyframes colorShift2 {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 217, 61, 0.8)); }
+            50% { filter: drop-shadow(0 0 20px rgba(107, 199, 127, 0.8)); }
+        }
+
+        @keyframes colorShift3 {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(107, 199, 127, 0.8)); }
+            50% { filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.8)); }
+        }
+
+        @keyframes pulse-light {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* الأجهزة الصغيرة */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <div class="logo">TheNightNix</div>
+        <ul>
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#dlc">متجر DLC</a></li>
+            <li><a href="#games">الألعاب</a></li>
+            <li><a href="#contact">التواصل</a></li>
+        </ul>
+    </nav>
+
+    <!-- الرأس -->
+    <div class="header">
+        <h1>مرحباً بك في متجر TheNightNix</h1>
+        <p>أفضل مكان للحصول على محتوى إضافي حصري للألعاب</p>
+    </div>
+
+    <!-- البطاقات -->
+    <div class="cards-container">
+        <!-- البطاقة الأولى -->
+        <div class="card">
+            <div class="icon">❤️</div>
+            <h2>الدعم والتبرع</h2>
+            <p>ساعدنا على الاستمرار بدعم المشروع والحصول على امتيازات حصرية</p>
+            <a href="free.html" class="btn btn-red">تبرع الآن</a>
+        </div>
+
+        <!-- البطاقة الثانية -->
+        <div class="card">
+            <div class="icon">👑</div>
+            <h2>عضوية VIP المميزة</h2>
+            <p>احصل على جميع محتويات DLC الحصرية وأولويات الدعم الفني</p>
+            <a href="vip.html" class="btn btn-yellow">دخول VIP</a>
+        </div>
+
+        <!-- البطاقة الثالثة -->
+        <div class="card">
+            <div class="icon">🎁</div>
+            <h2>المحتويات المحدودة</h2>
+            <p>عروض خاصة ومحتويات محدودة الطبعة متاحة فقط لفترة محدودة</p>
+
+            <a href="free.html" class="btn btn-green">اكتشف العروض</a>
+        </div>
+    </div>
+</body>
+</html>
